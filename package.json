@@ -1,0 +1,13 @@
+{
+  "name": "lager",
+  "version": "1.0.0",
+  "main": "lib/lager.js",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.741.0",
+    "glob": "^7.1.6",
+    "require-all": "^3.0.0",
+    "uuid": "^8.3.0"
+  },
+  "author": "Jerry Dixon <jerry.dixon@bigcompass.com>"
+}
