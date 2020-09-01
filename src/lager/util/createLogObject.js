@@ -8,8 +8,5 @@ module.exports = (level, args, logProps, errorKey) => {
   // Load default props into log object
   applyDefaultProps(log, logProps)
 
-  // Warn about prop validation errors
-  // TODO
-
   return log
 }
