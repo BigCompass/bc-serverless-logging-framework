@@ -1,3 +1,5 @@
+import * as SQS from 'aws-sdk/clients/sqs'
+
 export interface LagerConfiguration {
   levels?: Array<string>
   props?: LogProps,
@@ -6,6 +8,7 @@ export interface LagerConfiguration {
 }
 
 export interface Log {
+  level?: string,
   message?: string,
   [x: string]: any
 }
@@ -20,11 +23,27 @@ export interface Logger {
   [x: string]: Function
 }
 
+export interface Transport {
+  destination?: Destination
+  handler?: Function
+}
+
 export interface Destination {
   send(log: Log): void | Promise<any>
 }
 
-export interface Transport {
-  destination?: Destination
-  handler?: Function
+export interface ConsoleType {
+  debug: Function
+  info: Function
+  warn: Function
+  error: Function
+}
+
+export interface ConsoleLogDestinationConfig {
+  consoleLevel?: string
+}
+
+export interface SQSDestinationConfig {
+  sqsOptions?: SQS.Types.ClientConfiguration,
+  queueUrl: string
 }
