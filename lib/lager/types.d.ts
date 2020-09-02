@@ -21,6 +21,8 @@ export interface Logger {
 export interface Transport {
     destination?: Destination;
     handler?: Function;
+    level?: string;
+    levelNumber?: number;
 }
 export interface Destination {
     send(log: Log): void | Promise<any>;

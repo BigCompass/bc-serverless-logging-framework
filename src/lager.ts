@@ -27,10 +27,20 @@ export const lager = {
       console.warn('Warning: no transports added to lager logger')
     }
 
+    // Set level index onto transport. Log a warning if using a level that doesn't exist
+    transports?.forEach(transport => {
+      if (transport.level) {
+        transport.levelNumber = levels?.indexOf(transport.level)
+        if (transport.levelNumber === -1) {
+          console.warn(`Invalid level detected in transport: ${transport.level}. This transport will run for all log levels. Valid levels: ${levels}`)
+        }
+      }
+    })
+
     // Set up logger
     const logger: Logger = {
       // Function to set new props after creating a logger
-      props(newProps: LogProps): LogProps {
+      props(newProps: LogProps): Logger {
         props = {
           ...props,
           ...newProps
@@ -47,22 +57,22 @@ export const lager = {
     }
 
     // Set up log function for each log level
-    levels.forEach(level => {
+    levels.forEach((level, i) => {
       logger[level] = (...args: Array<string | Object | Error>) => {
         // Create the log object based on arguments/logger props
         const log = createLog(level, args, props, errorKey)
 
         if (transports && transports.length) {
           for (let transport of transports) {
-            if (transport.destination) {
-              console.log('sending to destination')
-              promises.push(transport.destination.send(log))
-            } else if (transport.handler) {
-              promises.push(transport.handler(log))
-            } else {
-              throw new Error('Invalid Lager transport: ' + transport)
+            if (transport.levelNumber === undefined || transport.levelNumber <= i) {
+              if (transport.destination) {
+                promises.push(transport.destination.send(log))
+              } else if (transport.handler) {
+                promises.push(transport.handler(log))
+              } else {
+                throw new Error('Invalid Lager transport: ' + transport)
+              }
             }
-
           }
         }
       }

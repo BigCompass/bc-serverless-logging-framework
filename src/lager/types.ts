@@ -2,14 +2,14 @@ import * as SQS from 'aws-sdk/clients/sqs'
 
 export interface LagerConfiguration {
   levels?: Array<string>
-  props?: LogProps,
-  transports?: Array<Transport>,
+  props?: LogProps
+  transports?: Array<Transport>
   errorKey?: string
 }
 
 export interface Log {
-  level?: string,
-  message?: string,
+  level?: string
+  message?: string
   [x: string]: any
 }
 
@@ -26,6 +26,8 @@ export interface Logger {
 export interface Transport {
   destination?: Destination
   handler?: Function
+  level?: string
+  levelNumber?: number
 }
 
 export interface Destination {
