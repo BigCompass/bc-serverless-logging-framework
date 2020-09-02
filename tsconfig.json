@@ -4,7 +4,13 @@
     "module": "commonjs",
     "declaration": true,
     "outDir": "./lib",
-    "strict": true
+    "strict": true,
+    "lib": [
+      "es2020"
+    ],
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src"

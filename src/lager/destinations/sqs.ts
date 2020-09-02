@@ -3,13 +3,13 @@
  */
 
 const AWS = require('aws-sdk')
-const DestinationConfigError = require('../errors/DestinationConfigError')
-import { Destination } from './Destination'
-import { Log } from '../types/Log'
+import { DestinationConfigError } from '../errors/DestinationConfigError'
+import { Destination } from '../types'
+import { Log } from '../types'
 import * as SQS from 'aws-sdk/clients/sqs'
 
 export interface SQSDestinationConfig {
-  sqsOptions: SQS.Types.ClientConfiguration,
+  sqsOptions?: SQS.Types.ClientConfiguration,
   queueUrl: string
 }
 

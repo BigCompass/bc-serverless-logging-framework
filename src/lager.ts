@@ -1,9 +1,7 @@
 import { Levels } from './lager/enums/Levels'
 import { destinations } from './lager/destinations'
-import { LoggerConfiguration } from './types/LoggerConfiguration'
-import { Logger } from './types/logger'
-
-const { createLogObject, applyDefaultProps } = require('./lager/util')
+import { Logger, LogProps, LagerConfiguration } from './lager/types'
+import { createLog } from './lager/util/createLog'
 
 const promises: Array<void | Promise<any>> = []
 
@@ -13,8 +11,9 @@ export const lager = {
 
   /**
    * Return a logger object based on configuration
+   * 
    */
-  create({ levels, props, transports, errorKey }: LoggerConfiguration) {
+  create({ levels, props, transports, errorKey }: LagerConfiguration = {}) {
 
     // Set defaults if not provided
     if (!levels || !levels.length) {
@@ -31,7 +30,7 @@ export const lager = {
     // Set up logger
     const logger: Logger = {
       // Function to set new props after creating a logger
-      props(newProps: Object): Object {
+      props(newProps: LogProps): LogProps {
         props = {
           ...props,
           ...newProps
@@ -43,7 +42,7 @@ export const lager = {
        * Wait for transport promises to finish
        */
       flush(): Promise<any[]> {
-        return Promise.all(promises)
+        return Promise.allSettled(promises)
       },
     }
 
@@ -51,7 +50,7 @@ export const lager = {
     levels.forEach(level => {
       logger[level] = (...args: Array<string | Object | Error>) => {
         // Create the log object based on arguments/logger props
-        const log = createLogObject(level, args, props, errorKey)
+        const log = createLog(level, args, props, errorKey)
 
         if (transports && transports.length) {
           for (let transport of transports) {
