@@ -1,6 +1,7 @@
 import { ConsoleLevels } from '../enums/ConsoleLevels'
 import { Destination, Log, ConsoleLogDestinationConfig } from "../types";
 import { Levels } from '../enums/Levels';
+import { decircularize } from '../util/decircularize'
 
 export const consoleLog = (config?: ConsoleLogDestinationConfig): Destination => ({
   send(log: Log) {
@@ -28,6 +29,6 @@ export const consoleLog = (config?: ConsoleLogDestinationConfig): Destination =>
       }
     }
 
-    logFn(log)
+    logFn(JSON.stringify(decircularize(log)))
   }
 })

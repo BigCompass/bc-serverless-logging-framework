@@ -6,6 +6,7 @@ const AWS = require('aws-sdk')
 import { DestinationConfigError } from '../errors/DestinationConfigError'
 import { Log, Destination, SQSDestinationConfig } from '../types'
 import * as SQS from 'aws-sdk/clients/sqs'
+import { decircularize } from '../util/decircularize'
 
 export const sqs = (config: SQSDestinationConfig): Destination => {
   let { sqsOptions, queueUrl } = config
@@ -28,7 +29,7 @@ export const sqs = (config: SQSDestinationConfig): Destination => {
   return {
     send(log: Log) {
       return sqs.sendMessage({
-        MessageBody: JSON.stringify(log),
+        MessageBody: JSON.stringify(decircularize(log)),
         QueueUrl: queueUrl
       }).promise()
         .catch(error => {
