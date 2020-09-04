@@ -28,12 +28,17 @@ export const sqs = (config: SQSDestinationConfig): Destination => {
 
   return {
     send(log: Log) {
-      return sqs.sendMessage({
-        MessageBody: JSON.stringify(decircularize(log)),
-        QueueUrl: queueUrl
-      }).promise()
-        .catch(error => {
-          console.error('Error occurred sending log message to SQS.', { log, error })
+      return sqs
+        .sendMessage({
+          MessageBody: JSON.stringify(decircularize(log)),
+          QueueUrl: queueUrl
+        })
+        .promise()
+        .catch((error) => {
+          console.error('Error occurred sending log message to SQS.', {
+            log,
+            error
+          })
         })
     }
   }

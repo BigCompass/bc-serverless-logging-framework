@@ -31,6 +31,7 @@ export interface Transport {
 }
 
 export interface Destination {
+  // eslint-disable-next-line no-unused-vars
   send(log: Log): void | Promise<any>
 }
 
@@ -46,6 +47,6 @@ export interface ConsoleLogDestinationConfig {
 }
 
 export interface SQSDestinationConfig {
-  sqsOptions?: SQS.Types.ClientConfiguration,
+  sqsOptions?: SQS.Types.ClientConfiguration
   queueUrl: string
 }

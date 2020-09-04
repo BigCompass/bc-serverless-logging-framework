@@ -1,4 +1,4 @@
-import { Log, LogProps } from "../types"
+import { Log, LogProps } from '../types'
 
 /**
  * Apply default log props to a provided log object
@@ -25,12 +25,16 @@ export const applyDefaultProps = (log: Log, props?: LogProps): Log => {
 
 /**
  * Initialize a log object with the provided log arguments
- * @param {string} level - the log level 
+ * @param {string} level - the log level
  * @param {Array<*>} args - the log arguments
  * @param {string} errorKey - The name of the error property to add for an error argument
- * @returns {Log} The new log object 
+ * @returns {Log} The new log object
  */
-export const initLog = (level: string, args: Array<any>, errorKey?: string): Log => {
+export const initLog = (
+  level: string,
+  args: Array<any>,
+  errorKey?: string
+): Log => {
   const log: Log = { level }
   const meta = {
     hasError: false,
@@ -67,12 +71,17 @@ export const initLog = (level: string, args: Array<any>, errorKey?: string): Log
 
 /**
  * Create a new log object
- * @param {string} level - The log level 
- * @param {Array<*>} args - The log arguments 
- * @param {LogProps} logProps - The log props to apply to the log 
- * @param {string} errorKey - The name of an error object to use in the log. Defaults to "error" 
+ * @param {string} level - The log level
+ * @param {Array<*>} args - The log arguments
+ * @param {LogProps} logProps - The log props to apply to the log
+ * @param {string} errorKey - The name of an error object to use in the log. Defaults to "error"
  */
-export const createLog = (level: string, args: Array<any>, logProps?: LogProps, errorKey?: string): Log => {
+export const createLog = (
+  level: string,
+  args: Array<any>,
+  logProps?: LogProps,
+  errorKey?: string
+): Log => {
   // Initialize the log object with provided aruguments
   const log: Log = initLog(level, args, errorKey)
 

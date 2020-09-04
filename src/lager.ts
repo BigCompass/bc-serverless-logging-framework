@@ -11,10 +11,9 @@ export const lager = {
 
   /**
    * Return a logger object based on configuration
-   * 
+   *
    */
   create({ levels, props, transports, errorKey }: LagerConfiguration = {}) {
-
     // Set defaults if not provided
     if (!levels || !levels.length) {
       levels = Object.values(lager.levels)
@@ -28,11 +27,13 @@ export const lager = {
     }
 
     // Set level index onto transport. Log a warning if using a level that doesn't exist
-    transports?.forEach(transport => {
+    transports?.forEach((transport) => {
       if (transport.level) {
         transport.levelNumber = levels?.indexOf(transport.level)
         if (transport.levelNumber === -1) {
-          console.warn(`Invalid level detected in transport: ${transport.level}. This transport will run for all log levels. Valid levels: ${levels}`)
+          console.warn(
+            `Invalid level detected in transport: ${transport.level}. This transport will run for all log levels. Valid levels: ${levels}`
+          )
         }
       }
     })
@@ -53,7 +54,7 @@ export const lager = {
        */
       flush(): Promise<any[]> {
         return Promise.allSettled(promises)
-      },
+      }
     }
 
     // Set up log function for each log level
@@ -64,7 +65,10 @@ export const lager = {
 
         if (transports && transports.length) {
           for (let transport of transports) {
-            if (transport.levelNumber === undefined || transport.levelNumber <= i) {
+            if (
+              transport.levelNumber === undefined ||
+              transport.levelNumber <= i
+            ) {
               if (transport.destination) {
                 promises.push(transport.destination.send(log))
               } else if (transport.handler) {
@@ -78,5 +82,5 @@ export const lager = {
       }
     })
     return logger
-  },
+  }
 }

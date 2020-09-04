@@ -1,13 +1,16 @@
 import { ConsoleLevels } from '../enums/ConsoleLevels'
-import { Destination, Log, ConsoleLogDestinationConfig } from "../types";
-import { Levels } from '../enums/Levels';
+import { Destination, Log, ConsoleLogDestinationConfig } from '../types'
+import { Levels } from '../enums/Levels'
 import { decircularize } from '../util/decircularize'
 
-export const consoleLog = (config?: ConsoleLogDestinationConfig): Destination => ({
+export const consoleLog = (
+  config?: ConsoleLogDestinationConfig
+): Destination => ({
   send(log: Log) {
-
     let logFn
-    if ((ConsoleLevels as any)[config?.consoleLevel || log?.consoleLevel || '']) {
+    if (
+      (ConsoleLevels as any)[config?.consoleLevel || log?.consoleLevel || '']
+    ) {
       logFn = (console as any)[config?.consoleLevel || log?.consoleLevel || '']
     } else {
       switch (log.level) {

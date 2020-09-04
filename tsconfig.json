@@ -9,7 +9,8 @@
       "es2020"
     ],
     "types": [
-      "node"
+      "node",
+      "jest"
     ]
   },
   "include": [
