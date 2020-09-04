@@ -49,3 +49,7 @@ export interface SQSDestinationConfig {
   sqsOptions?: SQS.Types.ClientConfiguration,
   queueUrl: string
 }
+
+export interface HttpDestinationOptions {
+  logProperty?: string
+}

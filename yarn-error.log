@@ -1,8 +1,8 @@
 Arguments: 
-  /home/jerrydixon1/.nvm/versions/node/v12.18.3/bin/node /mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/bin/yarn.js add --dev @types/dom
+  /home/jerrydixon1/.nvm/versions/node/v12.18.3/bin/node /mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/bin/yarn.js add @types/DOM
 
 PATH: 
-  /home/jerrydixon1/.vscode-server/bin/a0479759d6e9ea56afa657e454193f72aef85bd0/bin:/home/jerrydixon1/.nvm/versions/node/v12.18.3/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.UbuntuonWindows_2004.2020.812.0_x64__79rhkp1fndgsc:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/System32/Wbem:/mnt/c/windows/System32/WindowsPowerShell/v1.0/:/mnt/c/windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Amazon/AWSCLIV2/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/c/Users/jerry/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jerry/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/jerry/AppData/Roaming/npm:/mnt/c/Users/jerry/.pulumi/bin:/mnt/c/Users/jerry/AppData/Local/Microsoft/WindowsApps:/snap/bin
+  /home/jerrydixon1/.vscode-server/bin/a0479759d6e9ea56afa657e454193f72aef85bd0/bin:/home/jerrydixon1/.nvm/versions/node/v12.18.3/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/System32/Wbem:/mnt/c/windows/System32/WindowsPowerShell/v1.0/:/mnt/c/windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Amazon/AWSCLIV2/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/System32/Wbem:/mnt/c/windows/System32/WindowsPowerShell/v1.0/:/mnt/c/windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Amazon/AWSCLIV2/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Users/jerry/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jerry/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/jerry/AppData/Roaming/npm:/mnt/c/Users/jerry/.pulumi/bin:/mnt/c/Users/jerry/AppData/Local/Microsoft/WindowsApps:/snap/bin
 
 Yarn version: 
   1.22.4
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fdom: Not found
+  Error: https://registry.yarnpkg.com/@types%2fDOM: Not found
       at Request.params.callback [as _callback] (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:66987:18)
       at Request.self.callback (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:140748:22)
       at Request.emit (events.js:315:20)
@@ -39,6 +39,8 @@ npm manifest:
     "dependencies": {
       "aws-lambda": "^1.0.6",
       "aws-sdk": "^2.741.0",
+      "axios": "^0.20.0",
+      "flatted": "^3.0.4",
       "glob": "^7.1.6",
       "require-all": "^3.0.0",
       "uuid": "^8.3.0"
@@ -810,6 +812,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.10.1.tgz#e1e82e4f3e999e2cfd61b161280d16a111f86428"
     integrity sha512-zg7Hz2k5lI8kb7U32998pRRFin7zJlkfezGJjUc2heaD4Pw2wObakCDVzkKztTm/Ln7eiVvYsjqak0Ed4LkMDA==
   
+  axios@^0.20.0:
+    version "0.20.0"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
+    integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+    dependencies:
+      follow-redirects "^1.10.0"
+  
   babel-jest@^26.3.0:
     version "26.3.0"
     resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-26.3.0.tgz#10d0ca4b529ca3e7d1417855ef7d7bd6fc0c3463"
@@ -1489,6 +1498,16 @@ Lockfile:
     dependencies:
       locate-path "^5.0.0"
       path-exists "^4.0.0"
+  
+  flatted@^3.0.4:
+    version "3.0.4"
+    resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.0.4.tgz#f75ed043c803c8ca43a4d0bbc05f2bf20b5d9656"
+    integrity sha512-4gZhsMc26tSiMgQ+0gRN818ST2KCkX/4EvqocCkE1+SRb7mapNk4KLSP+XAj02jc8rxuyD3DrmI3a0BQ/TNOpg==
+  
+  follow-redirects@^1.10.0:
+    version "1.13.0"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
+    integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
   
   for-in@^1.0.2:
     version "1.0.2"
