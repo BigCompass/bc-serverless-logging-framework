@@ -136,7 +136,8 @@ logger.error('Error occurred in app', new BadError('A bad error occurred'))
 
 Logs don't have to have strings either -- they can simply contain an error or regular object.
 
-logger.critical in this case will log the following JSON to the console and also send it in a POST request to https://my-elk-stack.com:
+logger.critical in this case will log the following JSON to the console 
+and also send it in a POST request to https://my-elk-stack.com:
 
 { 
   "level": "critical", 
