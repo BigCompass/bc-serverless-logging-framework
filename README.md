@@ -26,7 +26,7 @@ yarn:
 > yarn add @bigcompass/lager
 ```
 
-## Usage
+## Standard Usage
 
 The easiest way to get started with `lager` is to simply create a logger! Use `lager.create` to get going:
 
@@ -110,7 +110,74 @@ logger.warn('A warning occurred. View warning body for more details', {
   warning: {
     code: 'MAX_EMAIL_THRESHOLD_90',
     message: 'Max email threshold almost reached -- 90% of free tier used this month'
-  },
-  warning
+  }
 })
+
+/*
+
+Logs the following JSON to the console and also sends it in a POST request to https://my-elk-stack.com:
+
+{ 
+  "level": "error", 
+  "message": "Error occurred in app",
+  "appName": "my-special-app", 
+  "timestamp": "<current timestamp>",
+  "error": {
+    "name": "BadError",
+    "message": "A bad error occurred",
+    "stack": "<BadError stacktrace>"
+  }
+}
+
+*/
+logger.error('Error occurred in app', new BadError('A bad error occurred'))
+
+/*
+
+Logs don't have to have strings either -- they can simply contain an error or regular object.
+
+logger.critical in this case will log the following JSON to the console and also send it in a POST request to https://my-elk-stack.com:
+
+{ 
+  "level": "critical", 
+  "appName": "my-special-app", 
+  "timestamp": "<current timestamp>",
+  "error": {
+    "name": "AppExplosionError",
+    "message": "A very terrible error occurred.",
+    "stack": "<BadError stacktrace>"
+  }
+}
+
+*/
+logger.critical(new AppExplosionError('A very terrible error occurred.'))
+
+
+```
+
+## Serverless Usage: AWS Lambda
+
+Using in an AWS Lambda will work very similar to the above code, with one caveat: if any logs result in asynchronous promises (e.g. sending logs to an HTTP or SQS destination), it is very important to use `logger.flush()` at the end of the lambda handler.
+
+Example `handler.js`:
+```js
+import { logger } from './logger.js'
+
+export const handler = async (event) => {
+  try {
+    // Example log. This will send to an HTTP endpoint
+    logger.info('Starting process...')
+
+    // Run code
+    // ...
+
+  } catch (err) {
+    // Handle errors
+    // ...
+
+  } finally {
+    // This will ensure all logs arrive to the HTTP endpoint before exiting the function.
+    await logger.flush()
+  }
+}
 ```
