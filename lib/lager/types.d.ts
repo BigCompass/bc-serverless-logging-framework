@@ -45,3 +45,7 @@ export interface RunTransportsConfig {
     level: string;
     transports: Array<Transport>;
 }
+
+export interface HttpDestinationOptions {
+    logProperty?: string;
+}
