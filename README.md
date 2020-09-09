@@ -134,7 +134,7 @@ logger.error('Error occurred in app', new BadError('A bad error occurred'))
 
 /*
 
-Logs don't have to have strings either -- they can simply contain an error or regular object.
+Logs don't have to include a string argument -- they can simply contain an error or regular object.
 
 logger.critical() in this case will log the following JSON to the console 
 and also send it in a POST request to https://my-elk-stack.com:
