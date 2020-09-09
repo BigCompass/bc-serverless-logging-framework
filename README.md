@@ -182,3 +182,15 @@ export const handler = async (event) => {
   }
 }
 ```
+
+**Note**: It's very important to use `await` in the example above.
+
+This will work:
+```js
+await logger.flush()
+```
+
+This will **not** work:
+```js
+logger.flush()
+```
