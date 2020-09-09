@@ -5,13 +5,21 @@
     "declaration": true,
     "outDir": "./lib",
     "strict": true,
+    "esModuleInterop": true,
     "lib": [
       "es2020"
     ],
     "types": [
       "node",
-      "jest"
-    ]
+      "jest",
+      "json-stringify-safe"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src"

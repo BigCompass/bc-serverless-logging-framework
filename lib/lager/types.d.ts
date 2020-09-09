@@ -25,7 +25,7 @@ export interface Transport {
     levelNumber?: number;
 }
 export interface Destination {
-    send(log: Log): void | Promise<any>;
+    send(log?: Log): void | Promise<any>;
 }
 export interface ConsoleType {
     debug: Function;
@@ -34,9 +34,14 @@ export interface ConsoleType {
     error: Function;
 }
 export interface ConsoleLogDestinationConfig {
-    consoleLevel?: string;
+    consoleLevel?: string | null;
 }
 export interface SQSDestinationConfig {
     sqsOptions?: SQS.Types.ClientConfiguration;
     queueUrl: string;
+}
+export interface RunTransportsConfig {
+    log: Log;
+    level: string;
+    transports: Array<Transport>;
 }

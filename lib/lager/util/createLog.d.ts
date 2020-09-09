@@ -1,4 +1,4 @@
-import { Log, LogProps } from "../types";
+import { Log, LogProps } from '../types';
 /**
  * Apply default log props to a provided log object
  * @param {Log} log - The log object to update

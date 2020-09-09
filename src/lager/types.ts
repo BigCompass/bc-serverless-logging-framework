@@ -32,7 +32,7 @@ export interface Transport {
 
 export interface Destination {
   // eslint-disable-next-line no-unused-vars
-  send(log: Log): void | Promise<any>
+  send(log?: Log): void | Promise<any>
 }
 
 export interface ConsoleType {
@@ -43,10 +43,16 @@ export interface ConsoleType {
 }
 
 export interface ConsoleLogDestinationConfig {
-  consoleLevel?: string
+  consoleLevel?: string | null
 }
 
 export interface SQSDestinationConfig {
   sqsOptions?: SQS.Types.ClientConfiguration
   queueUrl: string
+}
+
+export interface RunTransportsConfig {
+  log: Log
+  level: string
+  transports: Array<Transport>
 }

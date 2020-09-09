@@ -2,6 +2,7 @@ import { Levels } from './lager/enums/Levels'
 import { destinations } from './lager/destinations'
 import { Logger, LogProps, LagerConfiguration } from './lager/types'
 import { createLog } from './lager/util/createLog'
+import { setupTransport, runTransports } from './lager/util/transport'
 
 const promises: Array<void | Promise<any>> = []
 
@@ -15,7 +16,7 @@ export const lager = {
    */
   create({ levels, props, transports, errorKey }: LagerConfiguration = {}) {
     // Set defaults if not provided
-    if (!levels || !levels.length) {
+    if (!levels?.length) {
       levels = Object.values(lager.levels)
     }
     if (!errorKey) {
@@ -28,14 +29,7 @@ export const lager = {
 
     // Set level index onto transport. Log a warning if using a level that doesn't exist
     transports?.forEach((transport) => {
-      if (transport.level) {
-        transport.levelNumber = levels?.indexOf(transport.level)
-        if (transport.levelNumber === -1) {
-          console.warn(
-            `Invalid level detected in transport: ${transport.level}. This transport will run for all log levels. Valid levels: ${levels}`
-          )
-        }
-      }
+      setupTransport(transport, levels)
     })
 
     // Set up logger
@@ -57,28 +51,15 @@ export const lager = {
       }
     }
 
-    // Set up log function for each log level
+    // Set up logger to run transports at each log level
     levels.forEach((level, i) => {
       logger[level] = (...args: Array<string | Object | Error>) => {
         // Create the log object based on arguments/logger props
         const log = createLog(level, args, props, errorKey)
 
-        if (transports && transports.length) {
-          for (let transport of transports) {
-            if (
-              transport.levelNumber === undefined ||
-              transport.levelNumber <= i
-            ) {
-              if (transport.destination) {
-                promises.push(transport.destination.send(log))
-              } else if (transport.handler) {
-                promises.push(transport.handler(log))
-              } else {
-                throw new Error('Invalid Lager transport: ' + transport)
-              }
-            }
-          }
-        }
+        // Run transports for level and push any promises to the promises array
+        const transportPromises = runTransports(log, i, transports)
+        promises.push(...transportPromises)
       }
     })
     return logger
