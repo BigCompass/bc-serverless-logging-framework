@@ -1,4 +1,4 @@
-# lager
+# @bigcompass/lager
 
 A clean, crisp brew of a logging library that even tastes good on serverless architectures.
 
