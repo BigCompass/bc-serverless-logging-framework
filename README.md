@@ -158,7 +158,7 @@ logger.critical(new AppExplosionError('A very terrible error occurred.'))
 
 ## Serverless Usage: AWS Lambda
 
-Using in an AWS Lambda will work very similar to the above code, with one caveat: if any logs result in asynchronous promises (e.g. sending logs to an HTTP or SQS destination), it is very important to use `logger.flush()` at the end of the lambda handler.
+Using in an AWS Lambda will work similarly to the above code, with one caveat: if any logs result in asynchronous promises (e.g. sending logs to an HTTP or SQS destination), it is very important to use `logger.flush()` at the end of the lambda handler.
 
 Example `handler.js`:
 ```js
