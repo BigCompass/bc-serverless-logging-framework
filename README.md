@@ -12,7 +12,7 @@ Serverless architectures typically require a robust logging implementation invol
 
 Many projects already have a way of sending to external resources, but it is difficult to find any way to queue up sending logs to external resources and wait for the logs to send before closing out your process. This scenario is absolutely crucial for a serverless function such as AWS Lambda, as closing the process before logs finish sending to external resources might cause logs to sometimes not make it.
 
-At [Big Compass](https://www.bigcompass.com/) we strive to add value to the cloud community as a whole so have decided to implement `lager`: our own JSON logging solution that works easily not only on serverless architectures but on traditional systems as well.
+At [Big Compass](https://www.bigcompass.com/) we strive to add value to the cloud community so have decided to implement `lager`: our own JSON logging solution that works easily not only on serverless architectures but on traditional systems as well.
 
 ## Installation
 
