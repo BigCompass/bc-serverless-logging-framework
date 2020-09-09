@@ -1,24 +1,26 @@
 /**
- * Destination for sending directly to an SQS queue
+ * Destination for sending logs to an HTTP endpoint
  */
-
-const AWS = require('aws-sdk')
 import { DestinationConfigError } from '../errors/DestinationConfigError'
-import { Log, Destination, HttpDestinationOptions } from '../types'
+import { Log, Destination } from '../types'
 import { AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 
-export const http = (config: AxiosRequestConfig, options?: HttpDestinationOptions): Destination => {
-
+export const http = (config: AxiosRequestConfig): Destination => {
   if (!config) {
-    throw new DestinationConfigError('Axios configuration is required for http destination')
+    throw new DestinationConfigError(
+      'Axios configuration is required for http destination'
+    )
   }
 
   return {
     send(log: Log) {
       config.data = log
-      return axios(config).catch(error => {
-        console.error(`Error occurred sending log message to endpoint: ${config.url}`, { log, error })
+      return axios(config).catch((error) => {
+        console.error(
+          `Error occurred sending log message to endpoint: ${config.url}`,
+          { log, error }
+        )
       })
     }
   }

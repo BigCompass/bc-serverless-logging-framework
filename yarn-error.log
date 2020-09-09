@@ -1,5 +1,5 @@
 Arguments: 
-  /home/jerrydixon1/.nvm/versions/node/v12.18.3/bin/node /mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/bin/yarn.js add --dev @types.jest
+  /home/jerrydixon1/.nvm/versions/node/v12.18.3/bin/node /mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/bin/yarn.js install
 
 PATH: 
   /home/jerrydixon1/.vscode-server/bin/a0479759d6e9ea56afa657e454193f72aef85bd0/bin:/home/jerrydixon1/.nvm/versions/node/v12.18.3/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/System32/Wbem:/mnt/c/windows/System32/WindowsPowerShell/v1.0/:/mnt/c/windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Amazon/AWSCLIV2/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/System32/Wbem:/mnt/c/windows/System32/WindowsPowerShell/v1.0/:/mnt/c/windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Amazon/AWSCLIV2/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Users/jerry/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jerry/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/jerry/AppData/Roaming/npm:/mnt/c/Users/jerry/.pulumi/bin:/mnt/c/Users/jerry/AppData/Local/Microsoft/WindowsApps:/snap/bin
@@ -14,17 +14,16 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types.jest: Request "https://registry.yarnpkg.com/@types.jest" returned a 405
-      at Request.params.callback [as _callback] (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:66996:18)
-      at Request.self.callback (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:140748:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:141720:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:141642:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (_stream_readable.js:1220:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+  SyntaxError: Unknown token: { line: 1226, col: 43, type: 'COLON', value: undefined } 1226:43 in /home/jerrydixon1/Development/big-compass/lager/yarn.lock
+      at Parser.unexpected (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:64332:11)
+      at Parser.parse (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:64463:14)
+      at Parser.parse (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:64437:26)
+      at parse (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:64537:21)
+      at module.exports.exports.default (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:64099:96)
+      at Function.<anonymous> (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:3064:63)
+      at Generator.next (<anonymous>)
+      at step (/mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:310:30)
+      at /mnt/c/Users/jerry/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {
@@ -40,14 +39,16 @@ npm manifest:
     "dependencies": {
       "aws-lambda": "^1.0.6",
       "aws-sdk": "^2.741.0",
-      "flatted": "^3.0.4",
+      "axios": "^0.19.0",
       "glob": "^7.1.6",
+      "json-stringify-safe": "^5.0.1",
       "require-all": "^3.0.0",
       "uuid": "^8.3.0"
     },
     "author": "Jerry Dixon <jerry.dixon@bigcompass.com>",
     "devDependencies": {
       "@types/jest": "^26.0.13",
+      "@types/json-stringify-safe": "^5.0.0",
       "@types/node": "^14.6.3",
       "@typescript-eslint/eslint-plugin": "^4.0.1",
       "@typescript-eslint/parser": "^4.0.1",
@@ -712,6 +713,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
     integrity sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
   
+  "@types/json-stringify-safe@^5.0.0":
+    version "5.0.0"
+    resolved "https://registry.yarnpkg.com/@types/json-stringify-safe/-/json-stringify-safe-5.0.0.tgz#df34d054419d39323a3730966bacba02ac5e474e"
+    integrity sha512-UUA1sH0RSRROdInuDOA1yoRzbi5xVFD1RHCoOvNRPTNwR8zBkJ/84PZ6NhKVDtKp0FTeIccJCdQz1X2aJPr4uw==
+  
   "@types/json5@^0.0.29":
     version "0.0.29"
     resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
@@ -1057,6 +1063,13 @@ Lockfile:
       "@babel/types" "^7.7.0"
       eslint-visitor-keys "^1.0.0"
       resolve "^1.12.0"
+      
+  axios@^0.19.0:
+    version "0.19.2"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+    integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+    dependencies:
+      follow-redirects "1.5.10"
   
   babel-jest@^26.3.0:
     version "26.3.0"
@@ -1447,7 +1460,14 @@ Lockfile:
       whatwg-mimetype "^2.3.0"
       whatwg-url "^8.0.0"
   
-  debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
+  debug@=3.1.0:
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+    integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+    dependencies:
+      ms "2.0.0"
+  
+  debug@^2.2.0, debug@^2.3.3, debug@^2.6.9::
     version "2.6.9"
     resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
     integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
@@ -2034,10 +2054,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.2.tgz#4575b21e2bcee7434aa9be662f4b7b5f9c2b5138"
     integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
   
-  flatted@^3.0.4:
-    version "3.0.4"
-    resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.0.4.tgz#f75ed043c803c8ca43a4d0bbc05f2bf20b5d9656"
-    integrity sha512-4gZhsMc26tSiMgQ+0gRN818ST2KCkX/4EvqocCkE1+SRb7mapNk4KLSP+XAj02jc8rxuyD3DrmI3a0BQ/TNOpg==
+  follow-redirects@1.5.10:
+    version "1.5.10"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+    integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
+    dependencies:
+      debug "=3.1.0"
   
   for-in@^1.0.2:
     version "1.0.2"
@@ -3067,7 +3089,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
     integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
   
-  json-stringify-safe@~5.0.1:
+  json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
     version "5.0.1"
     resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
     integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
