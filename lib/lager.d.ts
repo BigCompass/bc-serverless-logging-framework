@@ -3,7 +3,7 @@ import { Logger, LagerConfiguration } from './lager/types';
 export declare const lager: {
     destinations: {
         sqs: (config: import("./lager/types").SQSDestinationConfig) => import("./lager/types").Destination;
-        http: (config: import("axios").AxiosRequestConfig, options?: import("./lager/types").HttpDestinationOptions | undefined) => import("./lager/types").Destination;
+        http: (config: import("axios").AxiosRequestConfig) => import("./lager/types").Destination;
         consoleLog: (config?: import("./lager/types").ConsoleLogDestinationConfig | undefined) => import("./lager/types").Destination;
     };
     levels: typeof Levels;

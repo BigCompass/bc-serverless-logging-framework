@@ -44,7 +44,7 @@ export const runTransports = (
   const transportPromises: Array<Promise<any>> = []
 
   // Filter transports based on level number passed in
-  if (levelNumber && transports?.length) {
+  if (levelNumber !== undefined && transports?.length) {
     transports = transports.filter(
       (transport) =>
         !transport?.levelNumber || transport.levelNumber <= levelNumber
