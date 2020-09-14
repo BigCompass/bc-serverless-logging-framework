@@ -6,26 +6,13 @@
     "outDir": "./lib",
     "strict": true,
     "esModuleInterop": true,
-    "lib": [
-      "es2020"
-    ],
-    "types": [
-      "node",
-      "jest",
-      "json-stringify-safe"
-    ],
+    "lib": ["es2020"],
+    "types": ["node", "jest", "json-stringify-safe"],
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "src/*"
-      ]
+      "~/*": ["src/*"]
     }
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/__tests__/*"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*"]
 }
