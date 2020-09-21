@@ -7,6 +7,11 @@ export interface LagerConfiguration {
     transports?: Array<Transport>;
     errorKey?: string;
 }
+export interface LagerChildOptions {
+    replaceTransports?: boolean;
+    replaceProps?: boolean;
+    replaceComputed?: boolean;
+}
 export interface Log {
     level?: string;
     message?: string;

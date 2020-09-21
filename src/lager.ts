@@ -1,6 +1,11 @@
 import { Levels } from './lager/enums/Levels'
 import { destinations } from './lager/destinations'
-import { Logger, LogProps, LagerConfiguration } from './lager/types'
+import {
+  Logger,
+  LogProps,
+  LagerConfiguration,
+  LagerChildOptions
+} from './lager/types'
 import { createLog } from './lager/util/createLog'
 import { setupTransport, runTransports } from './lager/util/transport'
 import _set from 'lodash.set'
@@ -23,6 +28,8 @@ export const lager = {
     errorKey,
     propsRoot
   }: LagerConfiguration = {}) {
+    let configuredProperties = props ? { ...props } : {}
+
     // Set defaults if not provided
     if (!levels?.length) {
       levels = Object.values(lager.levels)
@@ -62,7 +69,50 @@ export const lager = {
           }
         }
 
+        configuredProperties = {
+          ...configuredProperties,
+          ...newProps
+        }
+
         return this
+      },
+
+      // Function to return a new logger inheriting from this one
+      child(childConfig?: LagerConfiguration, options?: LagerChildOptions) {
+        if (!childConfig) {
+          childConfig = {}
+        }
+        const conf: LagerConfiguration = {}
+        conf.levels = childConfig.levels ?? levels
+        conf.propsRoot = childConfig.propsRoot ?? propsRoot
+        conf.props = configuredProperties
+        if (childConfig.props) {
+          conf.props = options?.replaceProps
+            ? childConfig.props
+            : { ...configuredProperties, ...childConfig.props }
+        }
+
+        if (computed && childConfig.computed) {
+          conf.computed = options?.replaceComputed
+            ? childConfig.computed
+            : { ...computed, ...childConfig.computed }
+        } else if (childConfig.computed) {
+          conf.computed = childConfig.computed
+        } else if (computed) {
+          conf.computed = computed
+        }
+
+        if (transports && childConfig.transports) {
+          conf.transports = options?.replaceTransports
+            ? childConfig.transports
+            : [...transports, ...childConfig.transports]
+        } else if (transports) {
+          conf.transports = transports
+        } else if (childConfig.transports) {
+          conf.transports = childConfig.transports
+        }
+
+        return lager.create(conf)
       },
 
       /**

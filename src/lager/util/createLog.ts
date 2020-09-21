@@ -46,8 +46,6 @@ export const applyComputedProps = (
   propsRoot?: string
 ) => {
   if (computed) {
-    console.log('RUNNING COMPUTED')
-    console.log(JSON.stringify(computed))
     for (let [propName, fn] of Object.entries(computed)) {
       // Reset prop name if propsRoot was passed in
       if (propsRoot) {

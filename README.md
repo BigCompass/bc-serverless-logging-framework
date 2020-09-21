@@ -19,13 +19,13 @@ At [Big Compass](https://www.bigcompass.com/) we strive to add value to the clou
 npm:
 
 ```
-> npm install --save @bigcompass/lager
+npm install --save @bigcompass/lager
 ```
 
 yarn:
 
 ```
-> yarn add @bigcompass/lager
+yarn add @bigcompass/lager
 ```
 
 ## Standard Usage
@@ -321,7 +321,6 @@ logger.error('An error occurred.', { success: false })
 //      "success": 0,
 //      "errorOccurred": true
 //    }
-
 ```
 
 ## Log Levels
@@ -376,3 +375,66 @@ const logger = lager.create({
   logger.custom_level_2()
 */
 ```
+
+## Child Loggers
+
+Sometimes it can make sense to make a new logger based on a parent logger. With `lager` it's possible to do just that. Simply create a top-level logger and then call `logger.child()` to get a clone of the logger.
+
+You can pass a lager configuration into the `child()` function to result in a logger with a configuration merged with the parent's.
+
+Example:
+
+```js
+const logger = lager.create({
+  props: {
+    loggerName: 'parent-logger',
+    test: true
+  },
+  computed: {
+    timestamp: () => new Date().toISOString()
+  },
+  transports: [
+    {
+      destination: lager.destinations.consoleLog()
+    }
+  ]
+})
+
+logger.info('This is from the parent logger!')
+// -> {
+//      "level": "info",
+//      "message": "This is from the parent logger!",
+//      "loggerName": "parent-logger",
+//      "test": true,
+//      "timestamp": "2020-09-21T16:39:48.945Z"
+//    }
+
+const childLogger = logger.child({
+  props: {
+    loggerName: 'child-logger',
+    isChild: true
+  },
+  computed: {
+    randomDecimal: () => Math.random()
+  }
+})
+
+childLogger.info('This is from the child logger!')
+// -> {
+//      "level": "info",
+//      "message": "This is from the child logger!",
+//      "loggerName": "child-logger",
+//      "test": true,
+//      "isChild": true,
+//      "timestamp": "2020-09-21T16:39:48.948Z",
+//      "randomDecimal": 0.9632872942532387
+//    }
+```
+
+As a second argument, `child()` takes in a `LagerChildOptions` argument. This argument is a configuration with the following properties:
+
+| Property            | Details                                      |
+| ------------------- | -------------------------------------------- |
+| `replaceTransports` | Replace the parent logger's transports array |
+| `replaceProps`      | Replace the parent logger's props object     |
+| `replaceComputed`   | Replace the parent logger's computed object  |
