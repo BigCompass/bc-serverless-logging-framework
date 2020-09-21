@@ -1,5 +1,4 @@
 import { runTransports } from '../transport'
-import { TRANSPORT_LEVEL_ALL } from '../../constants'
 import { Log, Transport } from '../../types'
 
 const handlers = {
