@@ -309,7 +309,7 @@ logger.info('Things are going well.', { success: true })
 // -> {
 //      "level": "info",
 //      "message": "Things are going well.",
-//      "timestamp": "<current>
+//      "timestamp": "<current timestamp>",
 //      "success": 1
 //    }
 
@@ -317,7 +317,7 @@ logger.error('An error occurred.', { success: false })
 // -> {
 //      "level": "error",
 //      "message": "An error occurred.",
-//      "timestamp": "<current>
+//      "timestamp": "<current timestamp>",
 //      "success": 0,
 //      "errorOccurred": true
 //    }
