@@ -3,6 +3,8 @@ import * as SQS from 'aws-sdk/clients/sqs'
 export interface LagerConfiguration {
   levels?: Array<string>
   props?: LogProps
+  propsRoot?: string
+  computed?: LogComputedProps
   transports?: Array<Transport>
   errorKey?: string
 }
@@ -15,6 +17,10 @@ export interface Log {
 
 export interface LogProps {
   [x: string]: any
+}
+
+export interface LogComputedProps {
+  [x: string]: Function
 }
 
 export interface Logger {

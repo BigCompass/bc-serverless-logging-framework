@@ -1,4 +1,6 @@
-import { Log, LogProps } from '../types'
+import { Log, LogProps, LogComputedProps } from '../types'
+import _get from 'lodash.get'
+import _set from 'lodash.set'
 
 /**
  * Apply default log props to a provided log object
@@ -6,16 +8,56 @@ import { Log, LogProps } from '../types'
  * @param {LogProps} props - The log props object
  * @returns {Log} the resulting log object
  */
-export const applyDefaultProps = (log: Log, props?: LogProps): Log => {
+export const applyDefaultProps = (
+  log: Log,
+  props?: LogProps,
+  propsRoot?: string
+): Log => {
   if (props) {
     for (let [propName, prop] of Object.entries(props)) {
+      // Reset prop name if propsRoot was passed in
+      if (propsRoot) {
+        propName = `${propsRoot}.${propName}`
+      }
+
       // Apply default props
-      if (log[propName] === undefined) {
+      if (_get(log, propName) === undefined) {
         if (typeof prop === 'function') {
-          log[propName] = prop(log)
+          _set(log, propName, prop(log))
         } else {
-          log[propName] = prop
+          _set(log, propName, prop)
         }
+      }
+    }
+  }
+
+  return log
+}
+
+/**
+ * Apply default log props to a provided log object
+ * @param {Log} log - The log object to update
+ * @param {LogComputedProps} computed - Object containing computed functions to run
+ * @returns {Log} the resulting log object
+ */
+export const applyComputedProps = (
+  log: Log,
+  computed?: LogComputedProps,
+  propsRoot?: string
+) => {
+  console.log('IN APPLYCOMPUTEDPROPS')
+  if (computed) {
+    console.log('RUNNING COMPUTED')
+    console.log(JSON.stringify(computed))
+    for (let [propName, fn] of Object.entries(computed)) {
+      // Reset prop name if propsRoot was passed in
+      if (propsRoot) {
+        propName = `${propsRoot}.${propName}`
+      }
+
+      // Apply computed props
+      if (typeof fn === 'function') {
+        _set(log, propName, fn(log))
       }
     }
   }
@@ -80,13 +122,18 @@ export const createLog = (
   level: string,
   args: Array<any>,
   logProps?: LogProps,
+  computed?: LogComputedProps,
+  propsRoot?: string,
   errorKey?: string
 ): Log => {
   // Initialize the log object with provided aruguments
   const log: Log = initLog(level, args, errorKey)
 
   // Load default props into log object
-  applyDefaultProps(log, logProps)
+  applyDefaultProps(log, logProps, propsRoot)
+
+  // Load computed props into log object
+  applyComputedProps(log, computed, propsRoot)
 
   return log
 }

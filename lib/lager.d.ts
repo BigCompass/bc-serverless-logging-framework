@@ -11,5 +11,5 @@ export declare const lager: {
      * Return a logger object based on configuration
      *
      */
-    create({ levels, props, transports, errorKey }?: LagerConfiguration): Logger;
+    create({ levels, props, computed, transports, errorKey, propsRoot }?: LagerConfiguration): Logger;
 };

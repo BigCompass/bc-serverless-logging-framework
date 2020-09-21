@@ -3,6 +3,7 @@ import { destinations } from './lager/destinations'
 import { Logger, LogProps, LagerConfiguration } from './lager/types'
 import { createLog } from './lager/util/createLog'
 import { setupTransport, runTransports } from './lager/util/transport'
+import _set from 'lodash.set'
 
 const promises: Array<void | Promise<any>> = []
 
@@ -14,7 +15,14 @@ export const lager = {
    * Return a logger object based on configuration
    *
    */
-  create({ levels, props, transports, errorKey }: LagerConfiguration = {}) {
+  create({
+    levels,
+    props,
+    computed,
+    transports,
+    errorKey,
+    propsRoot
+  }: LagerConfiguration = {}) {
     // Set defaults if not provided
     if (!levels?.length) {
       levels = Object.values(lager.levels)
@@ -27,6 +35,12 @@ export const lager = {
       console.warn('Warning: no transports added to lager logger')
     }
 
+    if (props && propsRoot) {
+      const rootedProps = {}
+      _set(rootedProps, propsRoot, props)
+      props = rootedProps
+    }
+
     // Set level index onto transport. Log a warning if using a level that doesn't exist
     transports?.forEach((transport) => {
       setupTransport(transport, levels)
@@ -36,10 +50,18 @@ export const lager = {
     const logger: Logger = {
       // Function to set new props after creating a logger
       props(newProps: LogProps): Logger {
-        props = {
-          ...props,
-          ...newProps
+        if (propsRoot) {
+          _set(props as Object, propsRoot as string, {
+            ...props?.propsRoot,
+            ...newProps
+          })
+        } else {
+          props = {
+            ...props,
+            ...newProps
+          }
         }
+
         return this
       },
 
@@ -55,7 +77,7 @@ export const lager = {
     levels.forEach((level, i) => {
       logger[level] = (...args: Array<string | Object | Error>) => {
         // Create the log object based on arguments/logger props
-        const log = createLog(level, args, props, errorKey)
+        const log = createLog(level, args, props, computed, propsRoot, errorKey)
 
         // Run transports for level and push any promises to the promises array
         const transportPromises = runTransports(log, i, transports)

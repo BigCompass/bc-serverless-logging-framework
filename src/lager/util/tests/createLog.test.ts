@@ -5,6 +5,7 @@ const mockData = {
   level: 'info',
   args: ['test message'],
   logProps: { test: 'test123' },
+  computed: {},
   errorKey: 'error',
   log: { message: '123' }
 }
@@ -30,6 +31,7 @@ it('calls helper functions as expected and returns log object', () => {
     mockData.level,
     mockData.args,
     mockData.logProps,
+    mockData.computed,
     mockData.errorKey
   )
 
