@@ -269,37 +269,59 @@ const jobId = uuidv4()
 const logger = lager.create({
   props: {
     project: 'my-example-project',
-    jobId,
-    timestamp() {
-      return new Date().toISOString()
-    }
+    jobId
   }
 })
 ```
 
-If a default prop is a function, the function has access to the log object itself too. Example using the log object:
+## Computed props
+
+`lager` allows for computed props as well, represented as functions that have access to the properties within the log object. A common computed property to add to a logger is a `timestamp()` function, but they can also be used to format specific properties or make complicated computations on log property values.
+
+Example:
 
 ```js
-// The following logger will apply an ageRange value if the
-// log object contains an age property
-// e.g. logger.info({ age: 22 }) will result in the following JSON:
-// { "level": "info", "age": 22, "ageRange": "20-29"}
+import { v4 as uuidv4 } from 'uuid'
+const jobId = uuidv4()
+
 const logger = lager.create({
   props: {
-    project: 'age-calculator-logger',
-    ageRange(log) {
-      if (typeof log?.age === 'number') {
-        const min = log.age - (log.age % 10)
-        const max = min + 9
-        if (min >= 100) {
-          return '100+
-        } else {
-          return `${min}-${max}`
-        }
+    project: 'my-example-project',
+    jobId
+  },
+  computed: {
+    // Add a timestamp to every log
+    timestamp: () => new Date().toISOString()
+
+    // Format success property to be 1 or 0
+    success: log => log.success ? 1 : 0
+
+    // Attach flag if error occurred
+    errorOccurred(log) {
+      if (log.level === lager.levels.error || log.level === lager.levels.critical) {
+        return true
       }
     }
   }
 })
+
+logger.info('Things are going well.', { success: true })
+// -> {
+//      "level": "info",
+//      "message": "Things are going well.",
+//      "timestamp": "<current>
+//      "success": 1
+//    }
+
+logger.error('An error occurred.', { success: false })
+// -> {
+//      "level": "error",
+//      "message": "An error occurred.",
+//      "timestamp": "<current>
+//      "success": 0,
+//      "errorOccurred": true
+//    }
+
 ```
 
 ## Log Levels
