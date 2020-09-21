@@ -45,7 +45,6 @@ export const applyComputedProps = (
   computed?: LogComputedProps,
   propsRoot?: string
 ) => {
-  console.log('IN APPLYCOMPUTEDPROPS')
   if (computed) {
     console.log('RUNNING COMPUTED')
     console.log(JSON.stringify(computed))

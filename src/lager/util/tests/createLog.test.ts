@@ -32,6 +32,7 @@ it('calls helper functions as expected and returns log object', () => {
     mockData.args,
     mockData.logProps,
     mockData.computed,
+    undefined, // propsRoot
     mockData.errorKey
   )
 

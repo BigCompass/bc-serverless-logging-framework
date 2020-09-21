@@ -30,7 +30,6 @@ beforeEach(() => {
       handler: handlers.handler1
     },
     {
-      levelNumber: TRANSPORT_LEVEL_ALL,
       handler: handlers.handler2
     },
     {
@@ -64,13 +63,13 @@ it('Runs transport if levelNumber not specified', () => {
 
 it('Returns promises for any transports that result in promises', async () => {
   spies.handler1.mockReturnValueOnce(Promise.resolve('handler1_result'))
-  spies.handler3.mockReturnValueOnce(Promise.resolve('handler3_result'))
+  spies.handler2.mockReturnValueOnce(Promise.resolve('handler2_result'))
 
   const results: Array<Promise<any>> = runTransports(testLog, 0, transports)
   expect(results.length).toBe(2)
 
   const promiseResults = await Promise.all(results)
-  expect(promiseResults).toEqual(['handler1_result', 'handler3_result'])
+  expect(promiseResults).toEqual(['handler1_result', 'handler2_result'])
 })
 
 it('logs a warning if a transport does not have a destination or handler', () => {

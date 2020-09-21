@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/lager.ts</title>
+    <title>Code coverage report for lager/util/transport.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> lager.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">lager/util</a> transport.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.1% </span>
+                <span class="strong">69.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>27/31</span>
+                <span class='fraction'>16/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76% </span>
+                <span class="strong">55.26% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>19/25</span>
+                <span class='fraction'>21/38</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.1% </span>
+                <span class="strong">69.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/31</span>
+                <span class='fraction'>16/23</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -133,76 +133,68 @@
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
 <a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -210,119 +202,88 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">38x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Levels } from './lager/enums/Levels'
-import { destinations } from './lager/destinations'
-import { Logger, LogProps, LagerConfiguration } from './lager/types'
-import { createLog } from './lager/util/createLog'
-import { setupTransport, runTransports } from './lager/util/transport'
-import _set from 'lodash.set'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Log, Transport } from '../types'
+import { TRANSPORT_LEVEL_ALL } from '../constants'
 &nbsp;
-const promises: Array&lt;void | Promise&lt;any&gt;&gt; = []
-&nbsp;
-export const lager = {
-  destinations,
-  levels: Levels,
-&nbsp;
-  /**
-   * Return a logger object based on configuration
-   *
-   */
-  create({
-    levels,
-    props,
-    computed,
-    transports,
-    errorKey,
-    propsRoot
-  }: LagerConfiguration = {}) {
-    // Set defaults if not provided
-    if (!levels?.length) {
-      levels = Object.values(lager.levels)
+/**
+ * Setup a transport
+ * @param {Transport} transport - The transport to set up
+ * @param {Array&lt;string&gt;} levels - The available levels for the transport to run against
+ */
+export const setupTransport = <span class="fstat-no" title="function not covered" >(</span>
+  transport: Transport,
+  levels: Array&lt;string&gt; | undefined
+) =&gt; {
+  // Set the levelNumber based on the transport
+  // config and levels available to log to
+<span class="cstat-no" title="statement not covered" >  if (transport?.level &amp;&amp; levels?.length) {</span>
+    const level = <span class="cstat-no" title="statement not covered" >transport.level</span>
+<span class="cstat-no" title="statement not covered" >    transport.levelNumber = levels.indexOf(level)</span>
+<span class="cstat-no" title="statement not covered" >    if (transport.levelNumber === -1) {</span>
+<span class="cstat-no" title="statement not covered" >      console.warn(</span>
+        `Invalid level detected in transport: ${level}. This transport will run for all log levels. Valid levels: ${Object.values(
+          levels
+        )}`
+      )
     }
-    if (!errorKey) {
-      errorKey = 'error'
-    }
-&nbsp;
-    if (!transports) {
-      console.warn('Warning: no transports added to lager logger')
-    }
-&nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (props &amp;&amp; propsRoot) {
-      const rootedProps = <span class="cstat-no" title="statement not covered" >{}</span>
-<span class="cstat-no" title="statement not covered" >      _set(rootedProps, propsRoot, props)</span>
-<span class="cstat-no" title="statement not covered" >      props = rootedProps</span>
-    }
-&nbsp;
-    // Set level index onto transport. Log a warning if using a level that doesn't exist
-    transports?.forEach((transport) =&gt; {
-      setupTransport(transport, levels)
-    })
-&nbsp;
-    // Set up logger
-    const logger: Logger = {
-      // Function to set new props after creating a logger
-      props(newProps: LogProps): Logger {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (propsRoot) {
-<span class="cstat-no" title="statement not covered" >          _set(props as Object, propsRoot as string, {</span>
-            ...props?.propsRoot,
-            ...newProps
-          })
-        } else {
-          props = {
-            ...props,
-            ...newProps
-          }
-        }
-&nbsp;
-        return this
-      },
-&nbsp;
-      /**
-       * Wait for transport promises to finish
-       */
-      flush(): Promise&lt;any[]&gt; {
-        return Promise.allSettled(promises)
-      }
-    }
-&nbsp;
-    // Set up logger to run transports at each log level
-    levels.forEach((level, i) =&gt; {
-      logger[level] = (...args: Array&lt;string | Object | Error&gt;) =&gt; {
-        // Create the log object based on arguments/logger props
-        const log = createLog(level, args, props, computed, propsRoot, errorKey)
-&nbsp;
-        // Run transports for level and push any promises to the promises array
-        const transportPromises = runTransports(log, i, transports)
-        promises.push(...transportPromises)
-      }
-    })
-    return logger
+  } else {
+<span class="cstat-no" title="statement not covered" >    transport.levelNumber = TRANSPORT_LEVEL_ALL</span>
   }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return transport</span>
+}
+&nbsp;
+/**
+ * Run a set of transports for a given log at a given level number, returning an array of promises for any transports that return promises
+ * @param {Log} log - The log to run through transports
+ * @param {number} levelNumber - The numeric notation of the level to run the transport for
+ * @param {Array&lt;Transport&gt;} transports - Array of transports to run
+ * @returns {Arary&lt;Promise&gt;} - Array of promises initiated by the runTransports function
+ */
+export const runTransports = (
+  log: Log,
+  levelNumber: number | undefined,
+  transports: Array&lt;Transport&gt; | undefined
+) =&gt; {
+  const transportPromises: Array&lt;Promise&lt;any&gt;&gt; = []
+&nbsp;
+  // Filter transports based on level number passed in
+  if (levelNumber !== undefined &amp;&amp; transports<span class="branch-0 cbranch-no" title="branch not covered" >?.l</span>ength) {
+    transports = transports.filter(
+      (transport) =&gt;
+        !transport<span class="branch-0 cbranch-no" title="branch not covered" >?.l</span>evelNumber || transport.levelNumber &lt;= levelNumber
+    )
+  }
+&nbsp;
+  // Run filtered transports
+  transports<span class="branch-0 cbranch-no" title="branch not covered" >?.f</span>orEach((transport) =&gt; {
+    let result
+&nbsp;
+    // Run transport or log a warning if transport is misconfigured
+    if (transport.destination) {
+      result = transport.destination.send(log)
+    } else if (transport.handler) {
+      result = transport.handler(log)
+    } else {
+      console.warn(
+        `Invalid Lager transport: ${JSON.stringify(transport)}. Skipping log`
+      )
+    }
+&nbsp;
+    // Push result to promises array if result is a promise
+    if (result instanceof Promise) {
+      transportPromises.push(result)
+    }
+  })
+&nbsp;
+  return transportPromises
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -331,17 +292,17 @@ export const lager = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Sep 21 2020 10:10:56 GMT-0500 (Central Daylight Time)
+                at Mon Sep 21 2020 09:42:38 GMT-0500 (Central Daylight Time)
             </div>
         </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     
