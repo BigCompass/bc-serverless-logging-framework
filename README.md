@@ -1,6 +1,6 @@
-# @bigcompass/lager
+# bc-serverless-logging-framework
 
-A clean, crisp brew of a logging library that even tastes good on serverless architectures.
+An easy-to-use logging frameworks to simply logging within serverless architectures.
 
 ## Background
 
@@ -12,32 +12,32 @@ Serverless architectures typically require a robust logging implementation invol
 
 Many projects already have a way of sending to external resources, but it is difficult to find any way to queue up sending logs to external resources and wait for the logs to send before closing out your process. This scenario is absolutely crucial for a serverless function such as AWS Lambda, as closing the process before logs finish sending to external resources might cause logs to sometimes not make it.
 
-At [Big Compass](https://www.bigcompass.com/) we strive to add value to the cloud community so have decided to implement `lager`: our own JSON logging solution that works easily not only on serverless architectures but on traditional systems as well.
+At [Big Compass](https://www.bigcompass.com/) we strive to add value to the cloud community so have decided to implement `bc-serverless-logging-framework`: our own JSON logging solution that works easily not only on serverless architectures but on traditional systems as well.
 
 ## Installation
 
 npm:
 
 ```
-npm install --save @bigcompass/lager
+npm install --save bc-serverless-logging-framework
 ```
 
 yarn:
 
 ```
-yarn add @bigcompass/lager
+yarn add bc-serverless-logging-framework
 ```
 
 ## Standard Usage
 
-The easiest way to get started with `lager` is to simply create a logger! Use `lager.create` to get going:
+The easiest way to get started with `bc-serverless-logging-framework` is to simply create a logger! Use `bcLogger.create` to get going:
 
 `logger.js`
 
 ```js
-import { lager } from '@bigcompass/lager'
+import { bcLogger } from 'bc-serverless-logging-framework'
 
-export const logger = lager.create({
+export const logger = bcLogger.create({
   // Designate default props to add to each log
   props: {
     appName: 'my-special-app',
@@ -47,14 +47,14 @@ export const logger = lager.create({
   transports: [
     // Log info-level logs and above to the console.
     {
-      level: lager.levels.info,
-      destination: lager.destinations.consoleLog()
+      level: bcLogger.levels.info,
+      destination: bcLogger.destinations.consoleLog()
     },
 
     // Log error-level logs to some API
     {
-      level: lager.levels.error,
-      destination: lager.destinations.http({
+      level: bcLogger.levels.error,
+      destination: bcLogger.destinations.http({
         url: 'https://my-elk-stack.com',
         method: 'POST',
         headers: {
