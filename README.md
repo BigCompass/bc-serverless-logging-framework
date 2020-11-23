@@ -1,6 +1,6 @@
 # bc-serverless-logging-framework
 
-An easy-to-use logging frameworks to simply logging within serverless architectures.
+An easy-to-use logging framework that simplifies logging within serverless architectures.
 
 ## Background
 
