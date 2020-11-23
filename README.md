@@ -28,6 +28,26 @@ yarn:
 yarn add bc-serverless-logging-framework
 ```
 
+## Current Features
+
+`bc-serverless-logging-framework` currently supports the following features:
+
+* Support for sending logs to:
+    * SQS
+    * Console
+    * HTTP
+    * Custom-defined destinations
+* Default log levels, with the ability to define custom ones
+* Add default properties to every log, both static properties and dynamic ones
+* The ability to wait for all asynchronous logs to finish sending, which is important for most serverless functions.
+* The ability to create a logger based off of an existing logger (e.g. clone a logger), and add new properties to it
+
+## Future features
+
+* Support for more destinations, such as logging to one or multiple files
+* Retries with exponential backoff when saving to external endpoints such as HTTP or SQS
+* Batching logs when saving to external endpoints such as HTTP or SQS
+
 ## Standard Usage
 
 The easiest way to get started with `bc-serverless-logging-framework` is to simply create a logger! Use `bcLogger.create` to get going:
