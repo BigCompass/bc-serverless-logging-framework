@@ -47,6 +47,7 @@ yarn add bc-serverless-logging-framework
 * Support for more destinations, such as logging to one or multiple files
 * Retries with exponential backoff when saving to external endpoints such as HTTP or SQS
 * Batching logs when saving to external endpoints such as HTTP or SQS
+* Integration with streaming services such as AWS Kinesis and Kafka
 
 ## Standard Usage
 
