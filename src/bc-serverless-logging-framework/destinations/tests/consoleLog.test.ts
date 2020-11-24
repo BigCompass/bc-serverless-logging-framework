@@ -1,7 +1,6 @@
 import { consoleLog } from '../consoleLog'
 import { ConsoleLevels } from '../../enums/ConsoleLevels'
 import { bcLogger } from '../../../bc-serverless-logging-framework'
-import { Log } from '../../types'
 
 const destinations = {
   // Will log based on log level
