@@ -1,7 +1,7 @@
 {
-  "name": "lager",
+  "name": "bc-serverless-logging-framework",
   "version": "1.0.0",
-  "main": "lib/lager.js",
+  "main": "lib/bc-serverless-logging-framework.js",
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",

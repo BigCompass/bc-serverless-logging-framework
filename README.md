@@ -32,22 +32,22 @@ yarn add bc-serverless-logging-framework
 
 `bc-serverless-logging-framework` currently supports the following features:
 
-* Support for sending logs to:
-    * SQS
-    * Console
-    * HTTP
-    * Custom-defined destinations
-* Default log levels, with the ability to define custom ones
-* Add default properties to every log, both static properties and dynamic ones
-* The ability to wait for all asynchronous logs to finish sending, which is important for most serverless functions.
-* The ability to create a logger based off of an existing logger (e.g. clone a logger), and add new properties to it
+- Support for sending logs to:
+  - SQS
+  - Console
+  - HTTP
+  - Custom-defined destinations
+- Default log levels, with the ability to define custom ones
+- Add default properties to every log, both static properties and dynamic ones
+- The ability to wait for all asynchronous logs to finish sending, which is important for most serverless functions.
+- The ability to create a logger based off of an existing logger (e.g. clone a logger), and add new properties to it
 
 ## Future features
 
-* Support for more destinations, such as logging to one or multiple files
-* Retries with exponential backoff when saving to external endpoints such as HTTP or SQS
-* Batching logs when saving to external endpoints such as HTTP or SQS
-* Integration with streaming services such as AWS Kinesis and Kafka
+- Support for more destinations, such as logging to one or multiple files
+- Retries with exponential backoff when saving to external endpoints such as HTTP or SQS
+- Batching logs when saving to external endpoints such as HTTP or SQS
+- Integration with streaming services such as AWS Kinesis and Kafka
 
 ## Standard Usage
 
@@ -216,42 +216,42 @@ This will **not** work:
 logger.flush()
 ```
 
-## Lager Destinations
+## bc-serverless-logging-framework Destinations
 
-`lager` contains the following pre-defined destinations:
+`bc-serverless-logging-framework` contains the following pre-defined destinations:
 
 - `http`
 - `sqs`
 - `consoleLog`
 
-More destinations are being planned to implement, and `lager` is structured with ease of new destination implementation in mind.
+More destinations are being planned to implement, and `bc-serverless-logging-framework` is structured with ease of new destination implementation in mind.
 
-## Lager Transports
+## bc-serverless-logging-framework Transports
 
-`lager` uses the concept of transports in order to send log messages to one or more destinations.
+`bc-serverless-logging-framework` uses the concept of transports in order to send log messages to one or more destinations.
 
 A transport contains the following properties:
 
-- `destination`: a `lager` destination (see: above). Required unless a `handler` property is defined.
+- `destination`: a `bc-serverless-logging-framework` destination (see: above). Required unless a `handler` property is defined.
 - `handler`: a custom function for handling a `log` object. Required if a `destination` is not defined.
-- `level`: Optional property to defined which levels the transport will run for. When specifying a level, the transport will run for the specified levels and all levels above it. For example, if specifying `lager.levels.warn` as the transport level, the transport will run for `logger.warn()`, `logger.error()`, and `logger.critical()`. If not specified, the log will log at all levels.
+- `level`: Optional property to defined which levels the transport will run for. When specifying a level, the transport will run for the specified levels and all levels above it. For example, if specifying `bcLogger.levels.warn` as the transport level, the transport will run for `logger.warn()`, `logger.error()`, and `logger.critical()`. If not specified, the log will log at all levels.
 
-### Lager Transports Example
+### bc-serverless-logging-framework Transports Example
 
 ```js
-const logger = lager.create({
+const logger = bcLogger.create({
   transports: [
     // Log to sqs at warn-level and above
     {
-      level: lager.levels.warn,
-      destination: lager.destinations.sqs({
+      level: bcLogger.levels.warn,
+      destination: bcLogger.destinations.sqs({
         queueUrl: 'http://example-queue.com'
       })
     },
 
     // Log to an http endpoint for all log levels
     {
-      destination: lager.destinations.http({
+      destination: bcLogger.destinations.http({
         url: 'http://my-log-endpoint.com',
         method: 'POST'
       })
@@ -259,13 +259,13 @@ const logger = lager.create({
 
     // Log to the console for info level and above
     {
-      level: lager.levels.info,
-      destination: lager.destinations.consoleLog()
+      level: bcLogger.levels.info,
+      destination: bcLogger.destinations.consoleLog()
     },
 
     // Run a custom log handler
     {
-      level: lager.levels.critical,
+      level: bcLogger.levels.critical,
       handler(log) {
         console.error('CRITICAL ERROR!')
         console.error(log)
@@ -279,7 +279,7 @@ const logger = lager.create({
 
 A common use case for logging is to have default properties in each log message. For example, including a `project`, `function`, and/or `jobId` in your logs to add to traceability. Or, adding a timestamp to each log.
 
-`lager` allows default props to be added easily both when creating the logger and after the logger has already been created.
+`bc-serverless-logging-framework` allows default props to be added easily both when creating the logger and after the logger has already been created.
 
 Example setting default props:
 
@@ -287,7 +287,7 @@ Example setting default props:
 import { v4 as uuidv4 } from 'uuid'
 const jobId = uuidv4()
 
-const logger = lager.create({
+const logger = bcLogger.create({
   props: {
     project: 'my-example-project',
     jobId
@@ -297,7 +297,7 @@ const logger = lager.create({
 
 ## Computed props
 
-`lager` allows for computed props as well, represented as functions that have access to the properties within the log object. A common computed property to add to a logger is a `timestamp()` function, but they can also be used to format specific properties or make complicated computations on log property values.
+`bc-serverless-logging-framework` allows for computed props as well, represented as functions that have access to the properties within the log object. A common computed property to add to a logger is a `timestamp()` function, but they can also be used to format specific properties or make complicated computations on log property values.
 
 Example:
 
@@ -305,7 +305,7 @@ Example:
 import { v4 as uuidv4 } from 'uuid'
 const jobId = uuidv4()
 
-const logger = lager.create({
+const logger = bcLogger.create({
   props: {
     project: 'my-example-project',
     jobId
@@ -319,7 +319,7 @@ const logger = lager.create({
 
     // Attach flag if error occurred
     errorOccurred(log) {
-      if (log.level === lager.levels.error || log.level === lager.levels.critical) {
+      if (log.level === bcLogger.levels.error || log.level === bcLogger.levels.critical) {
         return true
       }
     }
@@ -348,7 +348,7 @@ logger.error('An error occurred.', { success: false })
 
 #### Default log levels
 
-`lager` uses the following log levels by default:
+`bc-serverless-logging-framework` uses the following log levels by default:
 
 - `debug`
 - `info`
@@ -359,7 +359,7 @@ logger.error('An error occurred.', { success: false })
 When creating a logger, a function is added for each level and can be used as so:
 
 ```js
-const logger = lager.create({ ... })
+const logger = bcLogger.create({ ... })
 
 logger.debug('This is a debug message')
 logger.info('This is an info message')
@@ -367,21 +367,21 @@ logger.warn('This is a warn message')
 // etc.
 ```
 
-All default log levels are accessible directly in the `lager.levels` object. E.g., `lager.levels.info` is set to "info", `lager.levels.error` is set to "error", etc.
+All default log levels are accessible directly in the `bcLogger.levels` object. E.g., `bcLogger.levels.info` is set to "info", `bcLogger.levels.error` is set to "error", etc.
 
-Although default lager levels are not expected to change, it is recommended to use these predefined strings if referencing default lager levels in your code.
+Although default log levels are not expected to change, it is recommended to use these predefined strings if referencing default log levels in your code.
 
 #### Custom log levels
 
-`lager` can also use custom log levels by passing them into the `lager.create()` function:
+`bc-serverless-logging-framework` can also use custom log levels by passing them into the `bcLogger.create()` function:
 
 ```js
-const logger = lager.create({
+const logger = bcLogger.create({
   levels: [
-    lager.levels.info,
+    bcLogger.levels.info,
     'custom_level',
-    lager.levels.error,
-    lager.levels.critical,
+    bcLogger.levels.error,
+    bcLogger.levels.critical,
     'custom_level_2'
   ]
 })
@@ -399,14 +399,14 @@ const logger = lager.create({
 
 ## Child Loggers
 
-Sometimes it can make sense to make a new logger based on a parent logger. With `lager` it's possible to do just that. Simply create a top-level logger and then call `logger.child()` to get a clone of the logger.
+Sometimes it can make sense to make a new logger based on a parent logger. With `bc-serverless-logging-framework` it's possible to do just that. Simply create a top-level logger and then call `logger.child()` to get a clone of the logger.
 
-You can pass a lager configuration into the `child()` function to result in a logger with a configuration merged with the parent's.
+You can pass a configuration into the `child()` function to result in a logger with a configuration merged with the parent's.
 
 Example:
 
 ```js
-const logger = lager.create({
+const logger = bcLogger.create({
   props: {
     loggerName: 'parent-logger',
     test: true
@@ -416,7 +416,7 @@ const logger = lager.create({
   },
   transports: [
     {
-      destination: lager.destinations.consoleLog()
+      destination: bcLogger.destinations.consoleLog()
     }
   ]
 })
@@ -452,7 +452,7 @@ childLogger.info('This is from the child logger!')
 //    }
 ```
 
-As a second argument, `child()` takes in a `LagerChildOptions` argument. This argument is a configuration with the following properties:
+As a second argument, `child()` takes in a `BCLoggerChildOptions` argument. This argument is a configuration with the following properties:
 
 | Property            | Details                                      |
 | ------------------- | -------------------------------------------- |
