@@ -16,16 +16,18 @@ At [Big Compass](https://www.bigcompass.com/) we strive to add value to the clou
 
 ## Installation
 
+This project is not currently registered with npm, but can be added by referencing this repository directly.
+
 npm:
 
 ```
-npm install --save bc-serverless-logging-framework
+npm install --save https://github.com/BigCompass/bc-serverless-logging-framework.git
 ```
 
 yarn:
 
 ```
-yarn add bc-serverless-logging-framework
+yarn add https://github.com/BigCompass/bc-serverless-logging-framework.git
 ```
 
 ## Current Features
