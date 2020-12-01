@@ -1,6 +1,6 @@
 {
   "name": "bc-serverless-logging-framework",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/bc-serverless-logging-framework.js",
   "license": "MIT",
   "scripts": {
@@ -17,6 +17,7 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
+    "promise.allsettled": "^1.0.2",
     "require-all": "^3.0.0",
     "uuid": "^8.3.0"
   },

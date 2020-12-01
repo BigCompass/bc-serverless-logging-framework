@@ -13,6 +13,9 @@ import {
 } from './bc-serverless-logging-framework/util/transport'
 import _set from 'lodash.set'
 
+// Shim for promise.allSettled
+require('promise.allsettled').shim()
+
 const promises: Array<void | Promise<any>> = []
 
 export const bcLogger = {
