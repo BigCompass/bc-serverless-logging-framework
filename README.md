@@ -461,3 +461,12 @@ As a second argument, `child()` takes in a `BCLoggerChildOptions` argument. This
 | `replaceTransports` | Replace the parent logger's transports array |
 | `replaceProps`      | Replace the parent logger's props object     |
 | `replaceComputed`   | Replace the parent logger's computed object  |
+
+## Architecture
+### Traditional Logging Architecture
+Traditional logging architecture might look like the below diagram. It is very simple and straightforward.
+![image](https://user-images.githubusercontent.com/5343588/109753355-57eb7f80-7b9f-11eb-8e3c-2357017edd32.png)
+### Serverless Logging Architecture
+The architecture of serverless and microservices logging looks like this, and this is exactly how the Big Compass Serverless Logging Framework can be installed on the various serverless services to help standardize and send logs to a logging target.
+![image](https://user-images.githubusercontent.com/5343588/109753449-82d5d380-7b9f-11eb-8f2d-15072da67aee.png)
+
