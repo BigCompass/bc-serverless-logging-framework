@@ -16,7 +16,26 @@ At [Big Compass](https://www.bigcompass.com/) we strive to add value to the clou
 
 ## Installation
 
-This project is not currently registered with npm, but can be added by referencing this repository directly.
+Below details the installation methods for this framework. Both methods end in the same result, and do not need any environmental configurations.
+
+Since this framework is managed by you, and typically deployed as a dependency in your applications, you decide if you deploy this with any public facing resources.
+
+No IAM roles or policies are specifically needed to install this framework in your applications. No sensitive information is stored as a part of this installation either. You choose where you want to send logs. If you connect to an external target, be sure to follow best practices for storing your credentials securely. Tools like AWS Secrets Manager can help.
+
+This installation is completely free. You only pay for the applications/microservices you deploy this framework on.
+
+### Skills Required
+Before installing this dependency, it is recommended you have skills with:
+1. NodeJS
+2. Git CLI
+3. NPM
+
+### NPM/Yarn Dependency (Recommended Deployment Option)
+
+#### Prerequisites
+1. Either Yarn or NPM is installed for installing the framework as a dependency
+
+This project is not currently registered with NPM, but can be added as a dependency in your applications in less than a minute using NPM by referencing this repository directly.
 
 npm:
 
@@ -28,6 +47,17 @@ yarn:
 
 ```
 yarn add https://github.com/BigCompass/bc-serverless-logging-framework.git
+```
+
+### Clone the Repository
+
+#### Prerequisites
+1. Git CLI is installed on your server/machine
+
+You may also clone the repository and include this framework in your applications by using a local version of the code. It is still recommended to manage this framework from a central location and as a dependency in your microservices/applications. This installation technique takes less than a minute.
+
+```
+git clone git@github.com:BigCompass/bc-serverless-logging-framework.git
 ```
 
 ## Current Features
@@ -469,4 +499,12 @@ Traditional logging architecture might look like the below diagram. It is very s
 ### Serverless Logging Architecture
 The architecture of serverless and microservices logging looks like this, and this is exactly how the Big Compass Serverless Logging Framework can be installed on the various serverless services to help standardize and send logs to a logging target.
 ![image](https://user-images.githubusercontent.com/5343588/109753449-82d5d380-7b9f-11eb-8f2d-15072da67aee.png)
+
+## AWS Best Practices
+* Follow [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) when deploying to AWS
+* Do not use the root user for any deployments to AWS
+* Follow IAM best practices for providing least privilege access to AWS users and roles assumed by services
+
+## Support
+This framework is open source, developed by Big Compass and supported by the community. Feel free to make feature requests for support or reach out to Big Compass for logging help.
 
