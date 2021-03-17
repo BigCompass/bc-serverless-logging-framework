@@ -461,3 +461,32 @@ As a second argument, `child()` takes in a `BCLoggerChildOptions` argument. This
 | `replaceTransports` | Replace the parent logger's transports array |
 | `replaceProps`      | Replace the parent logger's props object     |
 | `replaceComputed`   | Replace the parent logger's computed object  |
+
+
+## Potential Errors
+
+The following errors can commonly happen when configuring the logging library:
+
+### No transports configured
+
+If no transports are configured, the library will log a warning. The logging framework cannot function if no transports are set up.
+
+For example, for the following code:
+
+```
+export const logger = bcLogger.create({
+  transports: []
+})
+```
+
+The logging framework will log "Warning: no transports added to bcLogger. Logging functionality is disabled." as a warning to the console.
+
+### Configuration issue with Transport Destination
+
+A destination requires configuration. For example, if logging to SQS, an SQS URL and other SQS-specific configurations must be provided. If some or all of the configurations are missing, a `LoggingFrameworkDestinationConfigError` is thrown by the `bcLogger.create()` function.
+
+### Error sending message to a destination.
+
+Should there be an issue sending a message to a destination, an error message is logged to the console. For example, if a log fails to send to an HTTP endpoint, the following message is logged: 
+
+>  Error occurred sending log message to endpoint: {endpoint url}. {JSON containing log object and the error that occurred}
