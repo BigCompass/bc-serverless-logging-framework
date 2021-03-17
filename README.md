@@ -515,7 +515,7 @@ The logging framework will log "Warning: no transports added to bcLogger. Loggin
 
 A destination requires configuration. For example, if logging to SQS, an SQS URL and other SQS-specific configurations must be provided. If some or all of the configurations are missing, a `LoggingFrameworkDestinationConfigError` is thrown by the `bcLogger.create()` function.
 
-### Error sending message to a destination.
+### Error sending message to a destination
 
 Should there be an issue sending a message to a destination, an error message is logged to the console. For example, if a log fails to send to an HTTP endpoint, the following message is logged: 
 
