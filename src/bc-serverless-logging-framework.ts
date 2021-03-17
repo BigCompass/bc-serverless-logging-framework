@@ -44,8 +44,10 @@ export const bcLogger = {
       errorKey = 'error'
     }
 
-    if (!transports) {
-      console.warn('Warning: no transports added to bcLogger')
+    if (!transports?.length) {
+      console.warn(
+        'Warning: no transports added to bcLogger. Logging functionality is disabled'
+      )
     }
 
     if (props && propsRoot) {
