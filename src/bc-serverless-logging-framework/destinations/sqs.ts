@@ -3,17 +3,24 @@
  */
 
 const AWS = require('aws-sdk')
-import { DestinationConfigError } from '../errors/DestinationConfigError'
+import { LoggingFrameworkDestinationConfigError } from '../errors/LoggingFrameworkDestinationConfigError'
 import { Log, Destination, SQSDestinationConfig } from '../types'
 import * as SQS from 'aws-sdk/clients/sqs'
 import { decircularize } from '../util/decircularize'
 
 export const sqs = (config: SQSDestinationConfig): Destination => {
+  if (!config) {
+    throw new LoggingFrameworkDestinationConfigError(
+      'No SQS Destination config supplied'
+    )
+  }
   let { sqsOptions, queueUrl } = config
 
   // Set url, throw error if not provided
   if (!queueUrl) {
-    throw new DestinationConfigError('SQS Queue URL is required.')
+    throw new LoggingFrameworkDestinationConfigError(
+      'SQS Queue URL is required.'
+    )
   }
 
   // Setup default sqs options

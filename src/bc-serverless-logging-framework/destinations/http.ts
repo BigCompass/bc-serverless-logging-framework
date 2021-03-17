@@ -1,14 +1,14 @@
 /**
  * Destination for sending logs to an HTTP endpoint
  */
-import { DestinationConfigError } from '../errors/DestinationConfigError'
+import { LoggingFrameworkDestinationConfigError } from '../errors/LoggingFrameworkDestinationConfigError'
 import { Log, Destination } from '../types'
 import { AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 
 export const http = (config: AxiosRequestConfig): Destination => {
   if (!config) {
-    throw new DestinationConfigError(
+    throw new LoggingFrameworkDestinationConfigError(
       'Axios configuration is required for http destination'
     )
   }
