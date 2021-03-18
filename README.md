@@ -4,11 +4,11 @@ An easy-to-use logging framework that simplifies logging within serverless archi
 
 ## Background
 
-There are already some really great logging libraries out there -- examples including [pino](https://www.npmjs.com/package/pino), [log4js](https://www.npmjs.com/package/log4js), [morgan](https://www.npmjs.com/package/morgan), and obviously, [winston](https://www.npmjs.com/package/winston).
+There are already some really great logging libraries out there -- examples including [pino](https://www.npmjs.com/package/pino), [log4js](https://www.npmjs.com/package/log4js), [morgan](https://www.npmjs.com/package/morgan), and [winston](https://www.npmjs.com/package/winston).
 
 Unfortunately, we encountered a use case that even these libraries did not seem to handle gracefully, and it's becoming a bigger and bigger use case every day -- **serverless**.
 
-Serverless architectures typically require a robust logging implementation involving one or more external target destinations, as opposed to a logging implementation in a typical "serverfull" environment which sometimes is as simple as logging to one or more files.
+Serverless architectures typically require a robust logging implementation involving one or more external target destinations, as opposed to a logging implementation in a typical "serverful" environment which sometimes is as simple as logging to one or more files.
 
 Many projects already have a way of sending to external resources, but it is difficult to find any way to queue up sending logs to external resources and wait for the logs to send before closing out your process. This scenario is absolutely crucial for a serverless function such as AWS Lambda, as closing the process before logs finish sending to external resources might cause logs to sometimes not make it.
 
@@ -24,11 +24,15 @@ No IAM roles or policies are specifically needed to install this framework in yo
 
 This installation is completely free. You only pay for the applications/microservices you deploy this framework on.
 
+### High Availability
+Since this logging framework gets installed within your applications (ideally as a dependency), you choose how you want to deploy your applications. It is recommended to deploy any application with this logging framework installed on it in a highly available environment using a multi-AZ approach if you are deploying this framework on an application that gets deployed in a VPC on AWS. For serverless applications, it's recommended to go with the out-of-the-box high availability of AWS Lambda that does not get deployed in a VPC.
+
 ### Skills Required
 Before installing this dependency, it is recommended you have skills with:
 1. NodeJS
 2. Git CLI
 3. NPM
+4. Deploying to AWS requires an AWS account
 
 ### NPM/Yarn Dependency (Recommended Deployment Option)
 
@@ -59,6 +63,54 @@ You may also clone the repository and include this framework in your application
 ```
 git clone git@github.com:BigCompass/bc-serverless-logging-framework.git
 ```
+### Installation Time
+Although you can include this logging framework as a dependency in your application in less than a minute using one of the techniques described above, you still have to deploy the application this framework is installed on. The timeframe to deploy your application depends on the application's complexity. In any scenario, it is recommended to use DevOps best practices and automate deployments using a CI/CD pipeline that integrates with your source control to help speed up deployment time.
+
+### Data Storage
+This logging framework sends potentially sensitive log data to your various logging targets. Be sure to protect your sensitive data in your logging targets such as ELK, Splunk, and other logging systems.
+Notes:
+* Customer data can be stored in the logging target system such as ELK, Splunk, or other target logging system. 
+* Be sure to protect your sensitive logging information where you send your logs
+
+#### Storing Data At Rest
+Be sure to follow best practices for storing your data at rest. With the Serverless Logging Framework, you decide where to send your logs. If your logs are sent to Amazon S3 for example, you can encrypt the data at rest using Amazon S3 server-side encryption. You can also encrypt the log data before it is sent out using your own encryption key.
+
+Make sure any stored data and any backup data is encrypted at rest to protect your sensitive logging data.
+
+### Log High Availability
+Once again, you can choose where to send your logs using the Serverless Logging Framework. No matter where you send your logs, if your logs are critical to your business continuity, create a highly available environment for your logs. For example, if you deploy ELK on Amazon EC2, deploy ELK in a clustered environment on multiple EC2's across AZ's behind a load balancer so that you can maximize uptime and the availability of your logging data. If you send your logs to Amazon RDS, you can create an RDS instance in a multi-AZ configuration when creating your RDS instance.
+
+#### Deployment Configurations
+If you choose to send your logs to AWS, you have 3 options for storing your logs:
+1. Single-AZ
+    1. Good for low cost environments that can go down without impacting the business 
+2. Multi-AZ
+    2. Best for data storage that needs to be highly available within a single region
+3. Multi-region
+    3. Best for data storage that needs to be highly available across regions so the data can be close to the regions where it is accessed
+
+#### Backup and Recovery
+Your logs can be sent to any system of your choosing using the Serverless Logging Framework. Whatever logging target you choose, ensure that you have the ability to set Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO). Without proper architecture and data storage high availability and backup, your logging data could be lost in the event of an AWS region going down, an AWS AZ going down, an EC2 instance interruption, and many other scenarios that can affect your logging data.
+
+To combat this, we recommend setting an RTO of 12 hours and an RPO of 1 hour. Both of these might depend on your business use case and can be tailored depending on your data impact. For example, recovering your data up to 1 hour in the past may be too aggressive, or it may not be good enough if your business relies on the data, so you can increase or decrease the RTO and RPO accordingly.
+
+To hit your RTO and RPO, ensure that your data is backed up automatically. In AWS, you can do this on EBS volumes attached to EC2, or on Amazon RDS instances. That way, if you are backing up your data and an instance fails, a region goes down, or something else occurs that affects your data, you will be able to restore from a backup.
+
+This also leads to a proper DR plan for your logs. Ensure you have a good plan in place in the event catastrophic failure occurs. For example, you can use another AZ in AWS if a single AZ goes down.
+
+### Keys
+No keys are necessary for deploying this logging framework, although you may use a key to connect to your desired logging target. Be sure to follow AWS best practices to secure your sensitive keys by using a secure key store such as Secrets Manager.
+
+### Upgrades
+If you use this logging framework as recommended as a dependency in your applications and you reference this source repository, you can upgrade in 2 ways:
+1. Reference this GitHub repository without referencing a specific commit. Then you can specify when you want your dependency management system to retrieve the latest updates from the master branch of this repository
+2. Reference a specific commit in this repository, and manually change the commit reference when you want to upgrade
+
+### Managing AWS Service Limits
+If you install this Serverless Logging Framework on AWS Lambda, ensure that you are familiar with the AWS Lambda service limits. The same applies for logging targets, such as SQS. You can find the AWS service limits for each service [here](https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html). Be sure to include throttling in your applications if you will hit the upper boundaries of the AWS services limits.
+
+## Support
+Feel free to make feature requests and open issues if you find any bugs in the Serverless Logging Framework. Also, we would love if you helped us support the Serverless Logging Framework by contributing. With that in mind, we cannot promise any support SLA, but will do our best to support our community of loggers!
 
 ## Current Features
 
@@ -526,6 +578,9 @@ Traditional logging architecture might look like the below diagram. It is very s
 ![image](https://user-images.githubusercontent.com/5343588/109753355-57eb7f80-7b9f-11eb-8e3c-2357017edd32.png)
 ### Serverless Logging Architecture
 The architecture of serverless and microservices logging looks like this, and this is exactly how the Big Compass Serverless Logging Framework can be installed on the various serverless services to help standardize and send logs to a logging target.
+Notes:
+* Customer data can be stored in the logging target system such as ELK, Splunk, or other target logging system. 
+* Be sure to protect your sensitive logging information where you send your logs
 ![image](https://user-images.githubusercontent.com/5343588/109753449-82d5d380-7b9f-11eb-8f2d-15072da67aee.png)
 
 ## AWS Best Practices
