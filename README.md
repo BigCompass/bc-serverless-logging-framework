@@ -80,8 +80,37 @@ Make sure any stored data and any backup data is encrypted at rest to protect yo
 ### Log High Availability
 Once again, you can choose where to send your logs using the Serverless Logging Framework. No matter where you send your logs, if your logs are critical to your business continuity, create a highly available environment for your logs. For example, if you deploy ELK on Amazon EC2, deploy ELK in a clustered environment on multiple EC2's across AZ's behind a load balancer so that you can maximize uptime and the availability of your logging data. If you send your logs to Amazon RDS, you can create an RDS instance in a multi-AZ configuration when creating your RDS instance.
 
+#### Deployment Configurations
+If you choose to send your logs to AWS, you have 3 options for storing your logs:
+1. Single-AZ
+    1. Good for low cost environments that can go down without impacting the business 
+2. Multi-AZ
+    2. Best for data storage that needs to be highly available within a single region
+3. Multi-region
+    3. Best for data storage that needs to be highly available across regions so the data can be close to the regions where it is accessed
+
+#### Backup and Recovery
+Your logs can be sent to any system of your choosing using the Serverless Logging Framework. Whatever logging target you choose, ensure that you have the ability to set Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO). Without proper architecture and data storage high availability and backup, your logging data could be lost in the event of an AWS region going down, an AWS AZ going down, an EC2 instance interruption, and many other scenarios that can affect your logging data.
+
+To combat this, we recommend setting an RTO of 12 hours and an RPO of 1 hour. Both of these might depend on your business use case and can be tailored depending on your data impact. For example, recovering your data up to 1 hour in the past may be too aggressive, or it may not be good enough if your business relies on the data, so you can increase or decrease the RTO and RPO accordingly.
+
+To hit your RTO and RPO, ensure that your data is backed up automatically. In AWS, you can do this on EBS volumes attached to EC2, or on Amazon RDS instances. That way, if you are backing up your data and an instance fails, a region goes down, or something else occurs that affects your data, you will be able to restore from a backup.
+
+This also leads to a proper DR plan for your logs. Ensure you have a good plan in place in the event catastrophic failure occurs. For example, you can use another AZ in AWS if a single AZ goes down.
+
 ### Keys
 No keys are necessary for deploying this logging framework, although you may use a key to connect to your desired logging target. Be sure to follow AWS best practices to secure your sensitive keys by using a secure key store such as Secrets Manager.
+
+### Upgrades
+If you use this logging framework as recommended as a dependency in your applications and you reference this source repository, you can upgrade in 2 ways:
+1. Reference this GitHub repository without referencing a specific commit. Then you can specify when you want your dependency management system to retrieve the latest updates from the master branch of this repository
+2. Reference a specific commit in this repository, and manually change the commit reference when you want to upgrade
+
+### Managing AWS Service Limits
+If you install this Serverless Logging Framework on AWS Lambda, ensure that you are familiar with the AWS Lambda service limits. The same applies for logging targets, such as SQS. You can find the AWS service limits for each service [here](https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html). Be sure to include throttling in your applications if you will hit the upper boundaries of the AWS services limits.
+
+## Support
+Feel free to make feature requests and open issues if you find any bugs in the Serverless Logging Framework. Also, we would love if you helped us support the Serverless Logging Framework by contributing. With that in mind, we cannot promise any support SLA, but will do our best to support our community of loggers!
 
 ## Current Features
 
