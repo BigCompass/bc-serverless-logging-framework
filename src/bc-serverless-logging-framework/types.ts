@@ -63,6 +63,12 @@ export interface SQSDestinationConfig {
   queueUrl: string
 }
 
+export interface FileDestinationConfig {
+  filePath: string
+  fileName: string
+
+}
+
 export interface RunTransportsConfig {
   log: Log
   level: string
