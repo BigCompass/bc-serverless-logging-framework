@@ -582,6 +582,8 @@ Notes:
 * Customer data can be stored in the logging target system such as ELK, Splunk, or other target logging system. 
 * Be sure to protect your sensitive logging information where you send your logs
 ![image](https://user-images.githubusercontent.com/5343588/109753449-82d5d380-7b9f-11eb-8f2d-15072da67aee.png)
+Specifically, it is recommended that the Serverless Logging Framework is installed as a Lambda Layer for deploying to AWS Lambda.
+![Logging Architecture - SLF Architecture (2)](https://user-images.githubusercontent.com/5343588/129807570-04f292b7-baaf-43f1-b7c1-240ee4d3082f.png)
 
 ## AWS Best Practices
 * Follow [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) when deploying to AWS
