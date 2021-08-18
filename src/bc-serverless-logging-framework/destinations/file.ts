@@ -2,8 +2,9 @@
  * Destination for sending directly to a created file
  */
 
-//import * as fs from 'fs';
+
 import {writeFile} from 'fs';
+
 import { LoggingFrameworkDestinationConfigError } from '../errors/LoggingFrameworkDestinationConfigError'
 import { Log, Destination, FileDestinationConfig } from '../types'
 
@@ -16,23 +17,17 @@ export const fileWriter = (config?: FileDestinationConfig): Destination => {
   const { filePath, fileName } = config
 
 
+  const fs = require('fs').promises;
+    return {
+      send(log: Log) {
 
-const fs = require('fs').promises;
+        let fsPromises = fs.writeFile(config.filePath + config.fileName, log.message)
+        return fsPromises
+        .catch((error: LoggingFrameworkDestinationConfigError) => {
+          console.error('Write file error occured: ', {log, error});
+        })
 
-
-  return {
-    send(log: Log) {
-
-      console.log('>>>>>>>>>>>>>>>'+filePath)
-      console.log('>>>>>>>>>>>>>>>'+fileName)
-
-      let fsPromises = fs.writeFile(config.fileName, log)
-      return fsPromises
-      .catch((error: LoggingFrameworkDestinationConfigError) => {
-        console.error('Write file error occured: ', {log, error});
-      })
-
-     }
-    }
+       }
+      }
 
 };
