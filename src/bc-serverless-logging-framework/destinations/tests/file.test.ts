@@ -3,43 +3,27 @@ import { bcLogger } from '../../../bc-serverless-logging-framework'
 
 const destinations = {
 
-  single: fileWriter({filePath: '/Users/tumulesh2/Documents/Big Compass/bc-serverless-logging-framework/src/bc-serverless-logging-framework/', fileName: 'newFile.txt'})
+  single: fileWriter({filePath: '/Users/tumulesh2/Documents/Big Compass/bc-serverless-logging-framework/src/bc-serverless-logging-framework/', fileName: 'newFile.txt'}),
+//  second: fileWriter({filePath: '/Users/tumulesh2/Documents/Big Compass/bc-serverless-logging-framework/src/bc-serverless-logging-framework/', fileName: 'existingFile.txt'})
 }
+
+
+//@ts-ignore
+const spy: any = jest.spyOn(fileWriter, 'fileWriter').mockImplementation()
+
 
 it('should write to a new file', () => {
    destinations.single.send({
-//    level: bcLogger.levels.info,
-    message: 'Hello new file. Works as expected.'
+    message: 'Hello new file. Works as expected.\n'
   })
+  expect(spy).toHaveBeenCalledTimes(1)
+
 })
-/*
 
 
 it('should write to an existing file', () => {
    destinations.single.send({
-    level: bcLogger.levels.info,
-    message: 'Hello file. Works as expected.'
+    message: 'Hello existing file. Works as expected.\n'
   })
+  expect(spy).toHaveBeenCalledTimes(2)
 })
-
-
-
-
-/*
-
-1. String to an existing file
-2. String to a new file
-3. Use spyOn function
-
-
-1. Compile and run (and so does file.ts)
-  - any downloads/changes to code
-2. Learn about spyOn
-
-
-const spies: any = {
-  file: {
-    single: jest.spyOn(fileName, 'single').mockImplementation(),
-  }
-}
-*/
